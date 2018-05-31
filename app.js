@@ -19,14 +19,47 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(express.static('public'));
-
-/*app.get('/', function (req, res) {
+/*
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/pages/login.html'));
+});
+*/
+/*
+app.get('/', function (req, res) {
     res.send('Hello World!');
-});*/
+});
+*/
 
 app.get('/', function (req, res) {
     res.render('index', {
-        titulo: 'Pagina de Inicio'
+        titulo: 'Pagina de Inicio',
+        subtitulo: 'Seja bem vindo',
+        servicos: [{
+                nome: 'Facebook',
+                icon: 'fa fa-facebook',
+                estado: true
+            },
+            {
+                nome: 'Whatsapp',
+                icon: 'fa fa-whatsapp',
+                estado: true
+            },
+            {
+                nome: 'Twitter',
+                icon: 'fa fa-twitter',
+                estado: true
+            },
+            {
+                nome: 'Telegram',
+                icon: 'fa fa-telegram',
+                estado: true
+            },
+            {
+                nome: 'Skype',
+                icon: 'fa fa-skype',
+                Estado: false
+            },
+        ]
     });
 });
 

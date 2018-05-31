@@ -64,7 +64,17 @@
                 i.fa.fa-angle-up
           #leftmenuControls.panel-collapse.collapse.in(role='tabpanel')
             .panel-body
-              .form-group
+              each s in servicos
+                .form-group
+                  .row
+                    label.col-xs-8
+                      i(class=`${s.icon}`)
+                      | &nbsp;#{s.nome}
+                    .col-xs-4.control-label
+                      .togglebutton
+                        label
+                          input(type='checkbox' checked=s.estado ? true : false)
+              //.form-group
                 .row
                   label.col-xs-8
                     i.fa.fa-whatsapp
@@ -73,7 +83,7 @@
                     .togglebutton
                       label
                         input(type='checkbox' checked='')
-              .form-group
+              //.form-group
                 .row
                   label.col-xs-8
                     i.fa.fa-facebook
@@ -82,7 +92,7 @@
                     .togglebutton
                       label
                         input(type='checkbox' checked='')          
-              .form-group
+              //.form-group
                 .row
                   label.col-xs-8
                     i.fa.fa-twitter
@@ -91,7 +101,7 @@
                     .togglebutton
                       label
                         input(type='checkbox')
-              .form-group
+              //.form-group
                 .row
                   label.col-xs-8
                     i.fa.fa-telegram
@@ -100,7 +110,7 @@
                     .togglebutton
                       label
                         input(type='checkbox' checked='')
-              .form-group
+              //.form-group
                 .row
                   label.col-xs-8
                     i.fa.fa-envelope
@@ -109,7 +119,7 @@
                     .togglebutton
                       label
                         input(type='checkbox' checked='')          
-              .form-group
+              //.form-group
                 .row
                   label.col-xs-8
                     i.fa.fa-skype
@@ -118,6 +128,7 @@
                     .togglebutton
                       label
                         input(type='checkbox')
+
           .milestone-sidbar
             .text-center-folded
               span.pull-right.pull-none-folded 60%
