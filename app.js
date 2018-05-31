@@ -50,6 +50,11 @@ app.get('/', function (req, res) {
                 estado: true
             },
             {
+                nome: 'LinkedIn',
+                icon: 'fa fa-linkedin',
+                estado: true
+            },
+            {
                 nome: 'Telegram',
                 icon: 'fa fa-telegram',
                 estado: true
