@@ -98,7 +98,7 @@ app.get('/', function (req, res) {
         ]
     });
 });
-
+/*
 mongoose.connect(config.db, (err, res) => {
     if (err) throw err
     console.log('Conectado com a base de dados.');
@@ -107,4 +107,8 @@ mongoose.connect(config.db, (err, res) => {
         console.log(`Servidor activo na porta:${port}`);
     });
 });
+*/
 
+server.listen(port, () => {
+    console.log(`Servidor activo na porta:${port}`);
+});
