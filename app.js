@@ -8,6 +8,23 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 
+var mongoose = require("mongoose");
+
+const config = require('./config')
+
+
+/*
+mongoose.connect(config.db, (err, res) => {
+    if (err) {
+      return console.log(`Error al conectar a la base de datos: ${err}`)
+    }
+    console.log('Conexión a la base de datos establecida...')
+  
+    app.listen(config.port, () => {
+      console.log(`API REST corriendo en http://localhost:${config.port}`)
+    })
+  })
+*/
 var port = process.env.PORT || 80;
 
 app.set('views', path.join(__dirname, 'views'));
@@ -30,44 +47,64 @@ app.get('/', function (req, res) {
 });
 */
 
+app.get('/post', function (req, res) {
+    sql.close()
+    sql.connect(config).then(() => {
+        return sql.query`Select * from EstadoInteracao`
+    }).then(result => {
+        console.dir(result)
+        res.status(200).send(result);
+    }).catch(err => {
+        res.status(200).send(err)
+    })/**/
+
+    //res.status(200).send('Donde estas');
+});
+
 app.get('/', function (req, res) {
     res.render('index', {
         titulo: 'Pagina de Inicio',
         subtitulo: 'Seja bem vindo',
         servicos: [{
-                nome: 'Facebook',
-                icon: 'fa fa-facebook',
-                estado: true
-            },
-            {
-                nome: 'Whatsapp',
-                icon: 'fa fa-whatsapp',
-                estado: true
-            },
-            {
-                nome: 'Twitter',
-                icon: 'fa fa-twitter',
-                estado: true
-            },
-            {
-                nome: 'LinkedIn',
-                icon: 'fa fa-linkedin',
-                estado: true
-            },
-            {
-                nome: 'Telegram',
-                icon: 'fa fa-telegram',
-                estado: true
-            },
-            {
-                nome: 'Skype',
-                icon: 'fa fa-skype',
-                Estado: false
-            },
+            nome: 'Facebook',
+            icon: 'fa fa-facebook',
+            estado: true
+        },
+        {
+            nome: 'Whatsapp',
+            icon: 'fa fa-whatsapp',
+            estado: true
+        },
+        {
+            nome: 'Twitter',
+            icon: 'fa fa-twitter',
+            estado: true
+        },
+        {
+            nome: 'LinkedIn',
+            icon: 'fa fa-linkedin',
+            estado: true
+        },
+        {
+            nome: 'Telegram',
+            icon: 'fa fa-telegram',
+            estado: true
+        },
+        {
+            nome: 'Skype',
+            icon: 'fa fa-skype',
+            Estado: false
+        },
         ]
     });
 });
 
-server.listen(port, () => {
-    console.log(`Servidor activo na porta:${port}`);
+mongoose.connect(config.db, (err, res) => {
+    if (err) throw err
+    console.log('Conectado com a base de dados.');
+
+    server.listen(port, () => {
+        console.log(`Servidor activo na porta:${port}`);
+    });
 });
+
