@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
-*/
+
 
 app.get('/post', function (req, res) {
     sql.close()
@@ -60,7 +60,7 @@ app.get('/post', function (req, res) {
 
     //res.status(200).send('Donde estas');
 });
-
+*/
 app.get('/', function (req, res) {
     res.render('index', {
         titulo: 'Pagina de Inicio',
